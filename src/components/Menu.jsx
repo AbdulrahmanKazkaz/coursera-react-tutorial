@@ -1,13 +1,8 @@
 import { useState, useEffect } from "react";
 import { dishesItems } from "../shared/dishes";
-import {
-  Card,
-  CardImg,
-  CardImgOverlay,
-  CardText,
-  CardBody,
-  CardTitle,
-} from "reactstrap";
+import { DishDetails } from "./DishDetails";
+import { DishComment } from "./DishComment";
+import { Card, CardImg, CardImgOverlay, CardTitle } from "reactstrap";
 
 export const Menu = () => {
   // Define State
@@ -35,17 +30,12 @@ export const Menu = () => {
       </div>
       {selectedDish && (
         <div className="row">
-          <Card>
-            <CardImg
-              width="100%"
-              src={selectedDish.image}
-              alt={selectedDish.name}
-            />
-            <CardBody>
-              <CardTitle>{selectedDish.name}</CardTitle>
-              <CardText>{selectedDish.description}</CardText>
-            </CardBody>
-          </Card>
+          <div className="col-12 col-md-5 m-1">
+            <DishDetails dish={selectedDish} />
+          </div>
+          <div className="col-12 col-md-5 m-1">
+            <DishComment />
+          </div>
         </div>
       )}
     </div>
