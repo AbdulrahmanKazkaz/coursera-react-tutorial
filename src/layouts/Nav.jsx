@@ -19,7 +19,11 @@ export const Nav = () => {
     <Navbar dark color="dark" fixed="fixed" expand="md">
       <div className="container">
         <NavbarBrand className="mr-auto" href="/">
-          <img src="assets/images/logo.png" height="30" width="41" />
+          <img
+            src={process.env.PUBLIC_URL + "/assets/images/logo.png"}
+            height="30"
+            width="41"
+          />
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
