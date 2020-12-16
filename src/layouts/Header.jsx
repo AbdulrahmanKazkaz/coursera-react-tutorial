@@ -1,8 +1,11 @@
+import { Nav } from "./Nav";
+
 import { Jumbotron } from "reactstrap";
 
 export const Header = () => {
   return (
     <>
+      <Nav />
       <Jumbotron>
         <div className="container">
           <div className="row row-header">

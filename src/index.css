@@ -31,3 +31,9 @@ address {
 .navbar-dark {
   background-color: #512da8 !important;
 }
+.not__found {
+  height: 30vh;
+  text-align: center;
+  padding-top: 50px;
+  font-weight: bold;
+}
