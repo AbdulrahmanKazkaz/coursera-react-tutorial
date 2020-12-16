@@ -17,10 +17,10 @@ export const Menu = () => {
   return (
     <div className="container">
       <BreadCrumb name="Menu" />
-      <div className="row">
+      <div className="row mb-3">
         {dishes &&
           dishes.map((dish) => (
-            <div className="col-12 col-md-5 m-1" key={dish.id}>
+            <div className="col-6 col-md-3" key={dish.id}>
               <Dish dish={dish} />
             </div>
           ))}

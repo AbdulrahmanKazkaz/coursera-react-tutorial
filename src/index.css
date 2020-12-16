@@ -37,3 +37,18 @@ address {
   padding-top: 50px;
   font-weight: bold;
 }
+.comment__text {
+  color: #512da8;
+}
+.dish__link {
+  color: #000;
+  font-weight: bold;
+  font-size: 17px;
+  transition: all 0.5s;
+}
+.dish__link:hover {
+  color: #512da8;
+}
+.home__card {
+  min-height: 94vh;
+}

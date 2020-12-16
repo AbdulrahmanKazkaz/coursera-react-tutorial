@@ -4,7 +4,7 @@ import { PROMOTIONS } from "../shared/promotions";
 import { LEADERS } from "../shared/leaders";
 import { DISHES } from "../shared/dishes";
 
-import { RenderCard } from "../components/RenderCard";
+import { HomeCard } from "../components/HomeCard";
 
 export const Home = () => {
   const [dishes, setDishes] = useState([]);
@@ -19,15 +19,15 @@ export const Home = () => {
 
   return (
     <div className="container">
-      <div className="row align-item-start">
+      <div className="row align-item-start my-2">
         <div className="col-12 col-md m-1">
-          <RenderCard item={dishes} />
+          <HomeCard item={dishes} />
         </div>
         <div className="col-12 col-md m-1">
-          <RenderCard item={promotion} />
+          <HomeCard item={promotion} />
         </div>
         <div className="col-12 col-md m-1">
-          <RenderCard item={leaders} />
+          <HomeCard item={leaders} />
         </div>
       </div>
     </div>

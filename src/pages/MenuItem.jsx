@@ -6,7 +6,7 @@ import { COMMENTS } from "../shared/comments";
 
 // Import Menu Components
 import { DishDetails } from "../components/menu/DishDetails";
-import { DishComment } from "../components/menu/DishComment";
+import { DishComments } from "../components/menu/DishComments";
 import { BreadCrumb } from "../components/BreadCrumb";
 
 export const MenuItem = ({ match, history }) => {
@@ -29,13 +29,17 @@ export const MenuItem = ({ match, history }) => {
             <div className="col-12 col-md-6">
               <DishDetails dish={dish} />
             </div>
-            <div className="col-12 col-md-6 pt-5">
-              {comments && <DishComment comments={comments} />}
+            <div className="col-12 col-md-6 pt-1">
+              <h3>Comments </h3>
+              <hr />
+              {comments && <DishComments comments={comments} />}
             </div>
           </div>
         </div>
       )}
-      {!dish && <h3 className="text-center my-5">Item Not Found</h3>}
+      {!dish && (
+        <h4 className="text-center text-danger my-5">item not found - 404</h4>
+      )}
     </>
   );
 };
