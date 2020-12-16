@@ -6,6 +6,7 @@ import { COMMENTS } from "../shared/comments";
 import { Dish } from "../components/menu/Dish";
 import { DishDetails } from "../components/menu/DishDetails";
 import { DishComment } from "../components/menu/DishComment";
+import { BreadCrumb } from "../components/BreadCrumb";
 
 export const Menu = () => {
   // Define State
@@ -21,6 +22,7 @@ export const Menu = () => {
 
   return (
     <div className="container">
+      <BreadCrumb name="Menu" />
       <div className="row">
         {dishes &&
           dishes.map((dish) => (

@@ -1,6 +1,9 @@
+import { BreadCrumb } from "../components/BreadCrumb";
+
 export const Contact = () => {
   return (
     <div className="container">
+      <BreadCrumb name="Contact Us" />
       <div className="row row-content">
         <div className="col-12">
           <h3>Location Information</h3>

@@ -1,7 +1,9 @@
+import { BreadCrumb } from "../components/BreadCrumb";
+
 export const About = () => {
   return (
     <div className="container">
-      <h4>About Us</h4>
+      <BreadCrumb name="About Us" />
     </div>
   );
 };
