@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import { Home } from "./pages/Home";
 import { Menu } from "./pages/Menu";
+import { About } from "./pages/About";
+import { Contact } from "./pages/Contact";
 import { NotFound } from "./pages/404";
 
 export const App = () => {
@@ -15,6 +17,8 @@ export const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/menu" component={Menu} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/contact" component={Contact} />
           <Route path="*" component={NotFound} />
         </Switch>
         <Footer />
