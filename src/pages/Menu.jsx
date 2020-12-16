@@ -36,7 +36,7 @@ export const Menu = () => {
           </div>
           <div className="col-12 col-md-5 m-1">
             <DishComment
-              comments={comments.filter((com) => com.dishID == selectedDish.id)}
+              comments={comments.filter((com) => com.dishId == selectedDish.id)}
             />
           </div>
         </div>

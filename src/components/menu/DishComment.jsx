@@ -13,7 +13,7 @@ export const DishComment = ({ comments }) => {
     <>
       {comments.map((comment) => (
         <div className="comment mb-3" key={comment.id}>
-          <div className="text mb-2">{comment.text}</div>
+          <div className="text mb-2">{comment.comment}</div>
           <div className="author text-warning">
             <span className="user"> {comment.author} : </span>
             <span className="date">{renderDate(comment.date)}</span>
