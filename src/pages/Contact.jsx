@@ -1,5 +1,5 @@
 import { BreadCrumb } from "../components/BreadCrumb";
-
+import { ContactForm } from "../components/ContactForm";
 export const Contact = () => {
   return (
     <div className="container">
@@ -50,6 +50,7 @@ export const Contact = () => {
           </div>
         </div>
       </div>
+      <ContactForm />
     </div>
   );
 };
