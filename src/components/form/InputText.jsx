@@ -1,11 +1,14 @@
-import { FormGroup, Label, Input, Col } from "reactstrap";
+import { FormGroup, Label, Input, Col, FormFeedback } from "reactstrap";
+
 export const InputText = ({
   type = "text",
   name,
   value,
   placeholder,
   onChange,
+  onBlur,
   Setter,
+  errors = null,
 }) => {
   return (
     <FormGroup row>
@@ -20,7 +23,11 @@ export const InputText = ({
           placeholder={placeholder}
           value={value}
           onChange={() => onChange(event, Setter)}
+          onBlur={onBlur}
+          valid={errors == ""}
+          invalid={errors !== "" && type == "text"}
         />
+        <FormFeedback>{errors}</FormFeedback>
       </Col>
     </FormGroup>
   );
