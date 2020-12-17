@@ -1,11 +1,18 @@
+import { useState } from "react";
+
 import { Nav } from "./Nav";
+import { LoginModal } from "../components/LoginModal";
 
 import { Jumbotron } from "reactstrap";
 
 export const Header = () => {
+  const [ModalIsOpen, setModalIsOpen] = useState(false);
+  const toggleModal = () => setModalIsOpen(!ModalIsOpen);
+
   return (
     <>
-      <Nav />
+      <Nav toggleModal={toggleModal} />
+      <LoginModal ModalIsOpen={ModalIsOpen} toggleModal={toggleModal} />
       <Jumbotron>
         <div className="container">
           <div className="row row-header">

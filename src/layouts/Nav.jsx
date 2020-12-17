@@ -8,11 +8,11 @@ import {
   NavbarToggler,
   Collapse,
   NavItem,
+  Button,
 } from "reactstrap";
 
-export const Nav = () => {
+export const Nav = ({ toggleModal }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
 
   return (
@@ -27,7 +27,7 @@ export const Nav = () => {
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <BootstrapNav className="ml-auto" navbar>
+          <BootstrapNav className="mr-auto" navbar>
             <NavItem>
               <NavLink exact className="nav-link" to="/">
                 <i className="fa fa-home fa-lg"></i> Home
@@ -47,6 +47,13 @@ export const Nav = () => {
               <NavLink exact className="nav-link" to="/contact">
                 <i className="fa fa-address-card fa-lg"></i> Contact Us
               </NavLink>
+            </NavItem>
+          </BootstrapNav>
+          <BootstrapNav className="ml-auto">
+            <NavItem>
+              <Button outline onClick={() => toggleModal()}>
+                <i className="fa fa-sign-in fa-lg"></i> Login
+              </Button>
             </NavItem>
           </BootstrapNav>
         </Collapse>
