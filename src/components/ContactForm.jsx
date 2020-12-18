@@ -1,9 +1,22 @@
 import { Row, Label, Col } from "reactstrap";
 import { LocalForm, Control } from "react-redux-form";
+
+import {
+  textValidation,
+  numberValidation,
+  emailValidation,
+} from "../helpers/validation";
+
 import { InputText } from "../components/form/InputText";
 import { InputSubmit } from "../components/form/InputSubmit";
 
 export const ContactForm = () => {
+  // Use Form Validation
+  const validText = textValidation(3, 15, true);
+  const validNumber = numberValidation(9, 12, true);
+  const validEmail = emailValidation(6, 20, true);
+
+  // Form Submition Event
   const handleSubmit = (values) => {
     console.log(values);
   };
@@ -15,10 +28,30 @@ export const ContactForm = () => {
       </div>
       <div className="col-12 col-md-9 mt-3">
         <LocalForm onSubmit={(val) => handleSubmit(val)}>
-          <InputText name="firstname" placeholder="First Name" />
-          <InputText name="lastname" placeholder="Last Name" />
-          <InputText name="telnun" placeholder="Tel. Number" />
-          <InputText name="email" placeholder="Email" />
+          <InputText
+            name="firstname"
+            holder="First Name"
+            validators={validText.role}
+            messages={validText.messages}
+          />
+          <InputText
+            name="lastname"
+            holder="Last Name"
+            validators={validText.role}
+            messages={validText.messages}
+          />
+          <InputText
+            name="telnun"
+            holder="Tel. Number"
+            validators={validNumber.role}
+            messages={validNumber.messages}
+          />
+          <InputText
+            name="email"
+            holder="Email"
+            validators={validEmail.role}
+            messages={validEmail.messages}
+          />
           <Row className="form-group">
             <Col md={{ size: 6, offset: 2 }}>
               <div className="form-check">

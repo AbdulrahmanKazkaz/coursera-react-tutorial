@@ -1,20 +1,27 @@
-import { Control } from "react-redux-form";
+import { Control, Errors } from "react-redux-form";
 
 import { Row, Label, Col } from "reactstrap";
 
-export const InputText = ({ name, placeholder }) => {
+export const InputText = ({ name, holder, validators = {}, messages = {} }) => {
   return (
     <Row className="form-group">
       <Label htmlFor={name} md={2}>
-        {placeholder}
+        {holder}
       </Label>
       <Col md={10}>
         <Control.text
           model={`.${name}`}
           id={name}
           name={name}
-          placeholder={placeholder}
+          placeholder={holder}
           className="form-control"
+          validators={validators}
+        />
+        <Errors
+          className="text-danger"
+          model={`.${name}`}
+          show="touched"
+          messages={messages}
         />
       </Col>
     </Row>
