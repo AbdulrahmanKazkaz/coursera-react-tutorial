@@ -1,13 +1,11 @@
+import { useState } from "react";
+import { Button } from "reactstrap";
+import { showDate } from "../../helpers/date";
+import { CommentModal } from "../modal/CommentModal";
+
 export const DishComments = ({ comments }) => {
-  const renderDate = (d) => {
-    const opts = {
-      year: "numeric",
-      month: "short",
-      day: "2-digit",
-    };
-    const date = new Date(Date.parse(d));
-    return Intl.DateTimeFormat("en-US", opts).format(date);
-  };
+  const [isOpen, setIsOpen] = useState(false);
+  const toggle = () => setIsOpen(!isOpen);
 
   return (
     <>
@@ -16,10 +14,14 @@ export const DishComments = ({ comments }) => {
           <div className="text mb-2">{comment.comment}</div>
           <div className="author comment__text">
             <span className="user"> {comment.author} , </span>
-            <span className="date">{renderDate(comment.date)}</span>
+            <span className="date">{showDate(comment.date)}</span>
           </div>
         </div>
       ))}
+      <Button outline onClick={() => toggle()}>
+        <i className="fa fa-edit fa-lg"></i> Submit Comment
+      </Button>
+      <CommentModal ModalIsOpen={isOpen} toggleModal={toggle} />
     </>
   );
 };

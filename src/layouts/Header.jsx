@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Nav } from "./Nav";
-import { LoginModal } from "../components/LoginModal";
+import { LoginModal } from "../components/modal/LoginModal";
 
 import { Jumbotron } from "reactstrap";
 
