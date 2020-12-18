@@ -1,34 +1,22 @@
-import { FormGroup, Label, Input, Col, FormFeedback } from "reactstrap";
+import { Control } from "react-redux-form";
 
-export const InputText = ({
-  type = "text",
-  name,
-  value,
-  placeholder,
-  onChange,
-  onBlur,
-  Setter,
-  errors = null,
-}) => {
+import { Row, Label, Col } from "reactstrap";
+
+export const InputText = ({ name, placeholder }) => {
   return (
-    <FormGroup row>
-      <Label htmlFor="fistname" md={2}>
+    <Row className="form-group">
+      <Label htmlFor={name} md={2}>
         {placeholder}
       </Label>
       <Col md={10}>
-        <Input
-          type={type}
+        <Control.text
+          model={`.${name}`}
           id={name}
           name={name}
           placeholder={placeholder}
-          value={value}
-          onChange={() => onChange(event, Setter)}
-          onBlur={onBlur}
-          valid={errors == ""}
-          invalid={errors !== "" && type == "text"}
+          className="form-control"
         />
-        <FormFeedback>{errors}</FormFeedback>
       </Col>
-    </FormGroup>
+    </Row>
   );
 };
