@@ -1,21 +1,20 @@
-import { useState, useEffect } from "react";
-
-import { PROMOTIONS } from "../shared/promotions";
-import { LEADERS } from "../shared/leaders";
-import { DISHES } from "../shared/dishes";
+import { useSelector } from "react-redux";
 
 import { HomeCard } from "../components/HomeCard";
 
 export const Home = () => {
-  const [dishes, setDishes] = useState([]);
-  const [promotion, setPromotion] = useState([]);
-  const [leaders, setLeaders] = useState([]);
-
-  useEffect(() => {
-    setDishes(DISHES.filter((dish) => dish.featured)[0]);
-    setPromotion(PROMOTIONS.filter((promo) => promo.featured)[0]);
-    setLeaders(LEADERS.filter((leader) => leader.featured)[0]);
-  }, []);
+  // Get All Leaders
+  const leaders = useSelector((state) => state.leaders).filter(
+    (leader) => leader.featured
+  )[0];
+  // Get All Dishes
+  const dishes = useSelector((state) => state.dishes).filter(
+    (dish) => dish.featured
+  )[0];
+  // Get All Promotion
+  const promotion = useSelector((state) => state.promotion).filter(
+    (promo) => promo.featured
+  )[0];
 
   return (
     <div className="container">

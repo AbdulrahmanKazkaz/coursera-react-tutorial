@@ -1,24 +1,19 @@
-import { useState, useEffect } from "react";
-
-// Get Data
-import { DISHES } from "../shared/dishes";
-import { COMMENTS } from "../shared/comments";
+import { useSelector } from "react-redux";
 
 // Import Menu Components
 import { DishDetails } from "../components/menu/DishDetails";
 import { DishComments } from "../components/menu/DishComments";
 import { BreadCrumb } from "../components/BreadCrumb";
 
-export const MenuItem = ({ match, history }) => {
-  const [dish, setDish] = useState({});
-  const [comments, setComments] = useState([]);
-
-  useEffect(() => {
-    setDish(DISHES.filter((dish) => dish.id == match.params.dishId)[0]);
-    setComments(
-      COMMENTS.filter((comment) => comment.dishId == match.params.dishId)
-    );
-  }, []);
+export const MenuItem = ({ match }) => {
+  // Get All Dishes
+  const dish = useSelector((state) => state.dishes).filter(
+    (dish) => dish.id == match.params.dishId
+  )[0];
+  // Git All Comments
+  const comments = useSelector((state) => state.comments).filter(
+    (comment) => comment.dishId == match.params.dishId
+  );
 
   return (
     <>

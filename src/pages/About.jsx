@@ -1,16 +1,12 @@
-import { useState, useEffect } from "react";
-import { LEADERS } from "../shared/leaders";
+import { useSelector } from "react-redux";
 
 import { Card, CardBody, CardHeader, Media } from "reactstrap";
 import { BreadCrumb } from "../components/BreadCrumb";
 
 import { RenderLeader } from "../components/RenderLeader";
-export const About = () => {
-  const [leaders, setLeaders] = useState([]);
 
-  useEffect(() => {
-    setLeaders(LEADERS);
-  }, []);
+export const About = () => {
+  const leaders = useSelector((state) => state.leaders);
 
   return (
     <div className="container">

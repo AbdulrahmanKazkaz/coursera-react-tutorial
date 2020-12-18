@@ -1,19 +1,11 @@
-import { useState, useEffect } from "react";
-// Get Data
-import { DISHES } from "../shared/dishes";
+import { useSelector } from "react-redux";
+
 // Import Components
 import { Dish } from "../components/menu/Dish";
 import { BreadCrumb } from "../components/BreadCrumb";
 
 export const Menu = () => {
-  // Define State
-  const [dishes, setDishes] = useState([]);
-
-  // Effect
-  useEffect(() => {
-    setDishes(DISHES);
-  }, []);
-
+  const dishes = useSelector((state) => state.dishes);
   return (
     <div className="container">
       <BreadCrumb name="Menu" />
