@@ -1,5 +1,7 @@
 import { LocalForm, Control, Errors } from "react-redux-form";
 import { textValidation } from "../../helpers/validation";
+import { useDispatch } from "react-redux";
+import { addComment } from "../../redux/actions";
 import {
   Modal,
   ModalBody,
@@ -10,13 +12,13 @@ import {
   Button,
 } from "reactstrap";
 
-export const CommentModal = ({ ModalIsOpen, toggleModal }) => {
+export const CommentModal = ({ ModalIsOpen, toggleModal, dishId }) => {
   const validText = textValidation(2, 12, true);
+  const dispatch = useDispatch();
 
   const handleLogin = (value) => {
     toggleModal();
-    alert(JSON.stringify(value));
-    console.log(value);
+    dispatch(addComment(dishId, value.name, value.comment, value.rating));
   };
 
   return (

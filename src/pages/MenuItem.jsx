@@ -27,7 +27,9 @@ export const MenuItem = ({ match }) => {
             <div className="col-12 col-md-6 pt-1">
               <h3>Comments </h3>
               <hr />
-              {comments && <DishComments comments={comments} />}
+              {comments && (
+                <DishComments comments={comments} dishId={dish.id} />
+              )}
             </div>
           </div>
         </div>

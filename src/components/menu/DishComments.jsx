@@ -3,7 +3,7 @@ import { Button } from "reactstrap";
 import { showDate } from "../../helpers/date";
 import { CommentModal } from "../modal/CommentModal";
 
-export const DishComments = ({ comments }) => {
+export const DishComments = ({ comments, dishId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -21,7 +21,7 @@ export const DishComments = ({ comments }) => {
       <Button outline onClick={() => toggle()}>
         <i className="fa fa-edit fa-lg"></i> Submit Comment
       </Button>
-      <CommentModal ModalIsOpen={isOpen} toggleModal={toggle} />
+      <CommentModal ModalIsOpen={isOpen} toggleModal={toggle} dishId={dishId} />
     </>
   );
 };
