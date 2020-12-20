@@ -1,34 +1,48 @@
-import { useSelector } from "react-redux";
-
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { fetchDishes } from "../redux/actions";
+// Import Components
 import { HomeCard } from "../components/HomeCard";
+import { Loading } from "../components/Loading";
 
 export const Home = () => {
-  // Get All Leaders
+  const dispatch = useDispatch();
+  const dishes = useSelector((state) => state.dishes);
+
   const leaders = useSelector((state) => state.leaders).filter(
-    (leader) => leader.featured
+    (lead) => lead.featured
   )[0];
-  // Get All Dishes
-  const dishes = useSelector((state) => state.dishes).filter(
-    (dish) => dish.featured
-  )[0];
-  // Get All Promotion
+
   const promotion = useSelector((state) => state.promotion).filter(
     (promo) => promo.featured
   )[0];
 
+  useEffect(() => {
+    dispatch(fetchDishes());
+  }, []);
+
   return (
     <div className="container">
-      <div className="row align-item-start my-2">
-        <div className="col-12 col-md m-1">
-          <HomeCard item={dishes} />
+      {dishes?.isLoading && (
+        <div className="row">
+          <Loading />
         </div>
-        <div className="col-12 col-md m-1">
-          <HomeCard item={promotion} />
+      )}
+      {dishes?.dishes && (
+        <div className="row align-item-start my-2">
+          <div className="col-12 col-md m-1">
+            <HomeCard
+              item={dishes?.dishes.filter((dish) => dish.featured)[0]}
+            />
+          </div>
+          <div className="col-12 col-md m-1">
+            <HomeCard item={promotion} />
+          </div>
+          <div className="col-12 col-md m-1">
+            <HomeCard item={leaders} />
+          </div>
         </div>
-        <div className="col-12 col-md m-1">
-          <HomeCard item={leaders} />
-        </div>
-      </div>
+      )}
     </div>
   );
 };

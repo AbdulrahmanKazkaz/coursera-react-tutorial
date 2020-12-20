@@ -4,7 +4,7 @@ import { Card, CardImg, CardImgOverlay, CardTitle } from "reactstrap";
 
 export const Dish = ({ dish }) => {
   return (
-    <Link className="dish__link" to={`/menu/${dish.id}`}>
+    <Link className="dish__link" to={`/menu/${dish?.id}`}>
       <Card>
         <CardImg width="100%" src={dish?.image} alt={dish?.name} />
         <CardImgOverlay>

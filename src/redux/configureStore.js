@@ -1,9 +1,8 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { allReducers } from "./reducers";
+import thunk from "redux-thunk";
+import logger from "redux-logger";
 
 export const configureStore = () => {
-  return createStore(
-    allReducers,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  );
+  return createStore(allReducers, applyMiddleware(thunk, logger));
 };
