@@ -5,6 +5,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from './redux/configureStore';
 
+import { BrowserRouter } from 'react-router-dom';
+
 import { App } from './App';
 
 // import css
@@ -13,8 +15,6 @@ import 'font-awesome/css/font-awesome.min.css';
 import 'bootstrap-social/bootstrap-social.css';
 import './index.css';
 
-import { MemoryRouter } from 'react-router-dom';
-
 const app = document.getElementById('root');
 
 const store = configureStore();
@@ -22,9 +22,9 @@ const store = configureStore();
 const Root = () => {
   return (
     <Provider store={store}>
-      <MemoryRouter>
+      <BrowserRouter>
         <App />
-      </MemoryRouter>
+      </BrowserRouter>
     </Provider>
   );
 };
