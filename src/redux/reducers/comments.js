@@ -1,14 +1,23 @@
-import { COMMENTS } from "../../shared/comments";
-import * as AcionType from "../actions/types";
+import * as ActionType from '../actions/types';
 
-export const commentsReducers = (state = COMMENTS, action) => {
+let initialState = {
+  err: null,
+  comments: null,
+};
+
+export const commentsReducers = (state = initialState, action) => {
   switch (action.type) {
-    case AcionType.ADD_COMMENT: {
+    case ActionType.ADD_COMMENT: {
       let comment = action.payload;
       comment.id = state.length;
       comment.date = new Date().toISOString();
-      return state.concat(comment);
+      return state.comments.comconcat(comment);
     }
+    case ActionType.COMMENTS_FAILD: {
+      return { ...state, err: action.payload, comments: null };
+    }
+    case ActionType.ADD_COMMENTS:
+      return { ...state, err: null, dishes: action.payload };
     default: {
       return state;
     }
