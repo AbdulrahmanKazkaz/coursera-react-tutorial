@@ -20,10 +20,10 @@ export const fetchDishes = () => (dispatch) => {
   dispatch(dishesLoading(true));
 
   axios
-    .get('/dishes1')
+    .get('/dishes')
     .then((res) => dispatch(addDishes(res.data)))
     .catch((err) => {
-      dispatch(dishesFail(err));
+      dispatch(dishesFaild(err));
     });
 };
 
