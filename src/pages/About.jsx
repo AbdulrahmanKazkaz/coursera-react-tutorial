@@ -5,6 +5,7 @@ import { Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { BreadCrumb } from '../components/BreadCrumb';
 import { RenderLeader } from '../components/RenderLeader';
 import { Loading } from '../components/Loading';
+import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 export const About = () => {
   const dispatch = useDispatch();
@@ -81,12 +82,18 @@ export const About = () => {
         <div className='col-12'>
           <div className='row'>
             <Media list>
-              {leaders &&
-                leaders.map((leader) => (
-                  <div className='col-12 mt-5' key={leader.id}>
-                    <RenderLeader leader={leader} />
-                  </div>
-                ))}
+              {leaders && (
+                <Stagger in>
+                  {leaders.map((leader) => (
+                    <Fade in>
+                      <div className='col-12 mt-5' key={leader.id}>
+                        <RenderLeader leader={leader} />
+                      </div>
+                    </Fade>
+                  ))}
+                </Stagger>
+              )}
+
               {!leaders && (
                 <div className='row'>
                   <Loading />
