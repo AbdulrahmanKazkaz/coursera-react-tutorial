@@ -1,48 +1,57 @@
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchDishes } from "../redux/actions";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchDishes, fetchLeaders, fetchPromotions } from '../redux/actions';
 // Import Components
-import { HomeCard } from "../components/HomeCard";
-import { Loading } from "../components/Loading";
+import { HomeCard } from '../components/HomeCard';
+import { Loading } from '../components/Loading';
 
 export const Home = () => {
   const dispatch = useDispatch();
+
   const dishes = useSelector((state) => state.dishes);
 
-  const leaders = useSelector((state) => state.leaders).filter(
-    (lead) => lead.featured
-  )[0];
+  const leaders = useSelector((state) => state.leaders);
 
-  const promotion = useSelector((state) => state.promotion).filter(
-    (promo) => promo.featured
-  )[0];
+  const promotion = useSelector((state) => state.promotion);
 
   useEffect(() => {
     dispatch(fetchDishes());
+    dispatch(fetchLeaders());
+    dispatch(fetchPromotions());
   }, []);
 
   return (
-    <div className="container">
+    <div className='container'>
       {dishes?.isLoading && (
-        <div className="row">
+        <div className='row'>
           <Loading />
         </div>
       )}
-      {dishes?.dishes && (
-        <div className="row align-item-start my-2">
-          <div className="col-12 col-md m-1">
+
+      <div className='row align-item-start my-2'>
+        {dishes?.dishes && (
+          <div className='col-12 col-md m-1'>
             <HomeCard
               item={dishes?.dishes.filter((dish) => dish.featured)[0]}
             />
           </div>
-          <div className="col-12 col-md m-1">
-            <HomeCard item={promotion} />
+        )}
+        {leaders?.leaders && (
+          <div className='col-12 col-md m-1'>
+            <HomeCard
+              item={leaders?.leaders.filter((leader) => leader.featured)[0]}
+            />
           </div>
-          <div className="col-12 col-md m-1">
-            <HomeCard item={leaders} />
+        )}
+        {promotion?.promos && (
+          <div className='col-12 col-md m-1'>
+            <HomeCard
+              i
+              item={promotion?.promos.filter((promo) => promo.featured)[0]}
+            />
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
