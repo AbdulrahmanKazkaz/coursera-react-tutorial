@@ -20,9 +20,11 @@ export const fetchDishes = () => (dispatch) => {
   dispatch(dishesLoading(true));
 
   axios
-    .get('/dishes')
+    .get('/dishes1')
     .then((res) => dispatch(addDishes(res.data)))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      dispatch(dishesFail(err));
+    });
 };
 
 //! Comments Action
@@ -50,7 +52,9 @@ export const fetchComments = () => (dispatch) => {
   axios
     .get('/comments')
     .then((res) => dispatch(addComments(res.data)))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      dispatch(commentsFaild(err));
+    });
 };
 
 //! Promotions Action
@@ -74,7 +78,9 @@ export const fetchPromotions = () => (dispatch) => {
   axios
     .get('/promotions')
     .then((res) => dispatch(addPromotions(res.data)))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      dispatch(promosFaild(err));
+    });
 };
 
 //! Leaders Action
@@ -98,5 +104,7 @@ export const fetchLeaders = () => (dispatch) => {
   axios
     .get('/leaders')
     .then((res) => dispatch(addLeaders(res.data)))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      dispatch(leadersFaild(err));
+    });
 };
