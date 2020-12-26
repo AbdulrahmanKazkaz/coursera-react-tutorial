@@ -1,18 +1,24 @@
-import { useSelector } from "react-redux";
-
-import { Card, CardBody, CardHeader, Media } from "reactstrap";
-import { BreadCrumb } from "../components/BreadCrumb";
-
-import { RenderLeader } from "../components/RenderLeader";
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchLeaders } from '../redux/actions';
+import { Card, CardBody, CardHeader, Media } from 'reactstrap';
+import { BreadCrumb } from '../components/BreadCrumb';
+import { RenderLeader } from '../components/RenderLeader';
+import { Loading } from '../components/Loading';
 
 export const About = () => {
-  const leaders = useSelector((state) => state.leaders);
+  const dispatch = useDispatch();
+  const leaders = useSelector((state) => state.leaders.leaders);
+
+  useEffect(() => {
+    dispatch(fetchLeaders());
+  }, []);
 
   return (
-    <div className="container">
-      <BreadCrumb name="About Us" />
-      <div className="row row-content">
-        <div className="col-12 col-md-6">
+    <div className='container'>
+      <BreadCrumb name='About Us' />
+      <div className='row row-content'>
+        <div className='col-12 col-md-6'>
           <h2>Our History</h2>
           <p>
             Started in 2010, Ristorante con Fusion quickly established itself as
@@ -23,42 +29,42 @@ export const About = () => {
             will arrive on your plate the next time you visit us.
           </p>
           <p>
-            The restaurant traces its humble beginnings to{" "}
+            The restaurant traces its humble beginnings to{' '}
             <em>The Frying Pan</em>, a successful chain started by our CEO, Mr.
             Peter Pan, that featured for the first time the world's best
             cuisines in a pan.
           </p>
         </div>
-        <div className="col-12 col-md-5">
+        <div className='col-12 col-md-5'>
           <Card>
-            <CardHeader className="bg-primary text-white">
+            <CardHeader className='bg-primary text-white'>
               Facts At a Glance
             </CardHeader>
             <CardBody>
-              <dl className="row p-1">
-                <dt className="col-6">Started</dt>
-                <dd className="col-6">3 Feb. 2013</dd>
-                <dt className="col-6">Major Stake Holder</dt>
-                <dd className="col-6">HK Fine Foods Inc.</dd>
-                <dt className="col-6">Last Year's Turnover</dt>
-                <dd className="col-6">$1,250,375</dd>
-                <dt className="col-6">Employees</dt>
-                <dd className="col-6">40</dd>
+              <dl className='row p-1'>
+                <dt className='col-6'>Started</dt>
+                <dd className='col-6'>3 Feb. 2013</dd>
+                <dt className='col-6'>Major Stake Holder</dt>
+                <dd className='col-6'>HK Fine Foods Inc.</dd>
+                <dt className='col-6'>Last Year's Turnover</dt>
+                <dd className='col-6'>$1,250,375</dd>
+                <dt className='col-6'>Employees</dt>
+                <dd className='col-6'>40</dd>
               </dl>
             </CardBody>
           </Card>
         </div>
-        <div className="col-12">
+        <div className='col-12'>
           <Card>
-            <CardBody className="bg-faded">
-              <blockquote className="blockquote">
-                <p className="mb-0">
+            <CardBody className='bg-faded'>
+              <blockquote className='blockquote'>
+                <p className='mb-0'>
                   You better cut the pizza in four pieces because I'm not hungry
                   enough to eat six.
                 </p>
-                <footer className="blockquote-footer">
+                <footer className='blockquote-footer'>
                   Yogi Berra,
-                  <cite title="Source Title">
+                  <cite title='Source Title'>
                     The Wit and Wisdom of Yogi Berra, P. Pepe, Diversion Books,
                     2014
                   </cite>
@@ -68,18 +74,24 @@ export const About = () => {
           </Card>
         </div>
       </div>
-      <div className="row row-content">
-        <div className="col-12">
+      <div className='row row-content'>
+        <div className='col-12'>
           <h2>Corporate Leadership</h2>
         </div>
-        <div className="col-12">
-          <div className="row">
+        <div className='col-12'>
+          <div className='row'>
             <Media list>
-              {leaders.map((leader) => (
-                <div className="col-12 mt-5" key={leader.id}>
-                  <RenderLeader leader={leader} />
+              {leaders &&
+                leaders.map((leader) => (
+                  <div className='col-12 mt-5' key={leader.id}>
+                    <RenderLeader leader={leader} />
+                  </div>
+                ))}
+              {!leaders && (
+                <div className='row'>
+                  <Loading />
                 </div>
-              ))}
+              )}
             </Media>
           </div>
         </div>
