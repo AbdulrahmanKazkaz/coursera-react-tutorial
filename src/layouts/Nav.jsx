@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import {
   Nav as BootstrapNav,
   Navbar,
-  NavbarBrand,
   NavbarToggler,
   Collapse,
   NavItem,
@@ -18,9 +17,6 @@ export const Nav = ({ toggleModal }) => {
   return (
     <Navbar dark color='dark' fixed='fixed' expand='md'>
       <div className='container'>
-        <NavbarBrand className='mr-auto' href='/'>
-          <img src={'/images/logo.png'} height='30' width='41' />
-        </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <BootstrapNav className='mr-auto' navbar>
