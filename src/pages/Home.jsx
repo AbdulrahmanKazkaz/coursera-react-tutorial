@@ -1,18 +1,15 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchDishes, fetchLeaders, fetchPromotions } from '../redux/actions';
-// Import Components
 import { HomeCard } from '../components/HomeCard';
 import { Loading } from '../components/Loading';
 
 export const Home = () => {
   const dispatch = useDispatch();
 
-  const dishes = useSelector((state) => state.dishes);
-
-  const leaders = useSelector((state) => state.leaders);
-
-  const promotion = useSelector((state) => state.promotion);
+  const dishes = useSelector((state) => state.dishes.dishes);
+  const leaders = useSelector((state) => state.leaders.leaders);
+  const promotion = useSelector((state) => state.promotion.promos);
 
   useEffect(() => {
     dispatch(fetchDishes());
@@ -22,33 +19,26 @@ export const Home = () => {
 
   return (
     <div className='container'>
-      {dishes?.isLoading && (
+      {(!dishes || !leaders || !promotion) && (
         <div className='row'>
           <Loading />
         </div>
       )}
 
       <div className='row align-item-start my-2'>
-        {dishes?.dishes && (
+        {dishes && (
           <div className='col-12 col-md m-1'>
-            <HomeCard
-              item={dishes?.dishes.filter((dish) => dish.featured)[0]}
-            />
+            <HomeCard item={dishes.filter((dish) => dish.featured)[0]} />
           </div>
         )}
-        {leaders?.leaders && (
+        {leaders && (
           <div className='col-12 col-md m-1'>
-            <HomeCard
-              item={leaders?.leaders.filter((leader) => leader.featured)[0]}
-            />
+            <HomeCard item={leaders.filter((leader) => leader.featured)[0]} />
           </div>
         )}
-        {promotion?.promos && (
+        {promotion && (
           <div className='col-12 col-md m-1'>
-            <HomeCard
-              i
-              item={promotion?.promos.filter((promo) => promo.featured)[0]}
-            />
+            <HomeCard i item={promotion.filter((promo) => promo.featured)[0]} />
           </div>
         )}
       </div>
